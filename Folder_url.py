@@ -36,7 +36,7 @@ def delete_extracted_folder(extracted_folder_path):
 
 
 
-@app.route('/process_zip', methods=['POST'])
+@app.route('/api/process_zip', methods=['POST'])
 def process_zip():
     # Check if the request contains a file
     delete_old_zip_files()
