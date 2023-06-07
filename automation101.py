@@ -19,7 +19,7 @@ from business_rules3 import business_rules3
 from cdcList import cdcList
 from source_tables import source_tables
 
-def get_urls(html_paths,folder_path,fileUrl,file_path101):
+def get_urls(html_paths,folder_path,fileUrl):
     all_options = []
     all_urls = []
 
@@ -88,24 +88,12 @@ def get_urls(html_paths,folder_path,fileUrl,file_path101):
 
 
 
-    if os.path.exists(file_path101):
-        os.remove(file_path101)
-    count = len(all_options)
 
-
-    done_stuff=0
-    with open(file_path101, "w") as file:
-        file.write(f"Starting the extraction")
 
 
     for user_choice in (all_options):
         join_list_final = []
-        # set the paths to the HTML files
 
-        # html_paths = ['/'.join(fileUrl.split('/')) + '/data_aq/ext_grp/IMS.htm',
-        # '/'.join(fileUrl.split('/')) + '/data_aq/ext_grp/ODS.htm']
-        # SAC_MASTER.htm
-        # SAC_AZR.htm
 
         new_df1_user_def = pd.DataFrame(
             columns=['', 'User Defined Function', 'Description1', 'Function Return Type',
@@ -149,10 +137,7 @@ def get_urls(html_paths,folder_path,fileUrl,file_path101):
         dataframes1,headingsxx = source_tables(url)
         output_path=collect_data(url, user_choice, my_list, data, df_user_final, dfdata, folder_path, join_list_final,
                          res_map_des, header_list, data_list, data_const, data_para, data_index, ylist,dataframes1,headingsxx)
-        done_stuff+=1
-        with open(file_path101, "w") as file:
-            file.write(f"{done_stuff}/{count}")
 
 
-            #else:
-                #print(f"Invalid input. Please choose one of the provided options.")
+
+

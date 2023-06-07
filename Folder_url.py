@@ -11,7 +11,6 @@ from status import get_status
 app = Flask(__name__)
 from flask_cors import CORS
 CORS(app)
-
 def delete_old_zip_files():
     current_working_directory = os.getcwd()
     files = os.listdir(current_working_directory)
@@ -60,12 +59,7 @@ def process_zip():
     file_path = os.path.join(os.getcwd(), filename_with_timestamp)
     file.save(file_path)
 
-    done_stuff = 0
 
-    current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    file_path101 = os.path.join(os.getcwd(), f"status_{current_time}.txt")
-    with open(file_path101, "w") as file:
-        file.write("Unzip in Process")
 
 
     # Extract the contents of the zip file
@@ -94,12 +88,11 @@ def process_zip():
 
     # Generate the dynamic folder and zip it
     current_working_directory = os.getcwd()
-    zip_path = dynamic(extracted_folder_path, current_working_directory, extracted_file_name,file_path101)
+    zip_path = dynamic(extracted_folder_path, current_working_directory, extracted_file_name)
 
 
 
-    if os.path.exists(file_path101):
-        os.remove(file_path101)
+
 
     # Return the zipped folder as a response
     response = send_file(zip_path, as_attachment=True)
@@ -114,4 +107,4 @@ def process_zip():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run()

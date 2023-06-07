@@ -9,7 +9,7 @@ from datetime import datetime
 from automation101 import get_urls
 
 
-def dynamic(fileUrl, folder_path, filename,file_path101):
+def dynamic(fileUrl, folder_path, filename):
     modified_fileUrl = fileUrl + "/data_aq/ext_grp/extgrp-list.htm"
     html_path = modified_fileUrl
 
@@ -36,7 +36,7 @@ def dynamic(fileUrl, folder_path, filename,file_path101):
     new_folder_path = os.path.join(folder_path, new_folder_name)
     os.makedirs(new_folder_path, exist_ok=True)
 
-    get_urls(html_paths, new_folder_path, fileUrl,file_path101)
+    get_urls(html_paths, new_folder_path, fileUrl)
 
     # Zip the folder at new_folder_path
     zip_path = os.path.join(folder_path, f"{filename}_extract_{timestamp}.zip")
